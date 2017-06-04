@@ -1,10 +1,12 @@
 $(document).ready(function(){
   var clickValue  = 1;
+  var lvlCost     = 10;
   var woodAmount  = 0,
   stoneAmount = 0,
   goldAmount  = 0;
 
 
+// PREVENT ENTER KEY SUBMITING
 $('button').keypress(function(e){
   if(e.keyCode === 13){
     e.preventDefault();
@@ -13,13 +15,28 @@ $('button').keypress(function(e){
 
 // CLICK LVL SYSTEM
 $('#clicklvl').click(function(){
-  if($('#goldAmount').val() >= 10){
-    goldAmount -= 10;
+  if($('#goldAmount').val() >= lvlCost){
+    goldAmount -= lvlCost;
+    lvlCost *= 2;
     clickValue += 1;
   }
   $('#clicklevel').val(clickValue);
+  $('#clicklvl').html('Clicks lvl up! ' + lvlCost + ' Gold');
 });
 
+
+// HOUSE SYSTEM (WORKERS REQUERIMENT)
+var house = {gold:10, capacity:4};
+var houseOwned = 0;
+
+$('#addHouse').click(function(){
+  if(house.gold <= goldAmount){
+    houseOwned += 1;
+    goldAmount -= house.gold;
+    house.gold *= 2;
+  }
+  $('#houses').val(houseOwned)
+})
 
 // RESOURCE GATHERING
 $('button').click(function(){
@@ -39,6 +56,11 @@ $('button').click(function(){
   $('#stoneAmount').val(stoneAmount);
   $('#woodAmount').val(woodAmount);
 });
+
+
+
+// WORKERS SYSTEM (IDLE GATHERING)
+
 
 
 });
