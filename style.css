@@ -1,18 +1,4 @@
-body {
-  padding: 10px;
-  
-}
-.container{
-  padding: 5px;
-}
-#resources{
-  padding:3px;
-  margin: 5px;
-}
-#clicklvl{
-  height: 100px;
-  width: 100px;
-}
-.workers{
-  margin: 5px;
-}
+.resources{
+  display: inline-block;
+  margin-top: 10px;
+  }
